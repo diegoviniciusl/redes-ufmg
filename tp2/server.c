@@ -73,7 +73,7 @@ int getEquipmentIdByFormattedId(char *value) {
     return -1;
 }
 
-void resInfoHandler(id) {
+void resInfoHandler(int id) {
     int equipmentId = atoi(strtok(NULL, "-"));
     char *temperature = strtok(NULL, "-");
 
@@ -101,7 +101,7 @@ void reqInfoHandler(int id) {
 void resListHandler(int id) {
     char message[BUFSZ];
     memset(message, 0, BUFSZ);
-    char listEquipments[BUFSZ] = "";
+    char listEquipments[BUFSZ - 10] = "";
     for (int i = 0; i < MAX_EQUIPMENTS; ++i) {
         if (equipments[i].connected == 1 && i != id) {
             strcat(listEquipments, equipments[i].id);

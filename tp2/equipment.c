@@ -63,7 +63,7 @@ void resInfoHandler() {
 void reqInfoHandler() {
     char *equipmentId = strtok(NULL, "-");
     int number = rand() % 10;
-    int decimal = rand() % 99;
+    int decimal = (rand() % 89) + 10;
 
     char message[BUFSZ];
     memset(message, 0, BUFSZ);
@@ -213,6 +213,11 @@ void *senderThread(void *data) {
         memset(message, 0, BUFSZ);
 
         readClientInput(input, message);
+
+        if (strlen(message) == 0) {
+            printf("Invalid message\n");
+            continue;
+        }
 
         sendMessage(message);
     }
